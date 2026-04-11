@@ -6,7 +6,7 @@ constexpr unsigned int HEIGHT = 1440;
 
 constexpr sf::Vector2u screenVector(WIDTH, HEIGHT);
 
-const std::string WINDOW_TITLE = "Happiness";
+constexpr std::string WINDOW_TITLE = "Happiness";
 
 int main()
 {
