@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.30)
 project(experimento_app)
 
 set(CMAKE_CXX_STANDARD 23)
 set(SFML_STATIC_LIBRARIES ON)
 
+# TODO: Need to be decomposed.
 include(FetchContent)
 
 FetchContent_Declare(
@@ -13,8 +14,10 @@ FetchContent_Declare(
 )
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
 FetchContent_MakeAvailable(googletest)
 
+# Starting attach detection.
 find_package(
         SFML 3
         REQUIRED
@@ -26,9 +29,16 @@ find_package(
         Window
 )
 
+# Application assembly.
+
 add_executable(
         experimento_app
         main.cc
+        world.cc
+        world.h
+        system.h
+        base-system.cc
+        base-system.h
 )
 
 target_link_libraries(
@@ -40,6 +50,8 @@ target_link_libraries(
         SFML::System
         SFML::Window
 )
+
+# Test app assembly.
 
 add_executable(
         my_tests
