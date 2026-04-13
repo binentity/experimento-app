@@ -4,7 +4,7 @@ project(experimento_app)
 set(CMAKE_CXX_STANDARD 23)
 set(SFML_STATIC_LIBRARIES ON)
 
-# TODO: Need to be decomposed.
+# Needs to be decomposed.
 include(FetchContent)
 
 FetchContent_Declare(
