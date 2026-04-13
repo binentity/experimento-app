@@ -55,7 +55,7 @@ target_link_libraries(
 
 add_executable(
         my_tests
-        test_main.cc
+        test/test_main.cc
 )
 
 target_link_libraries(

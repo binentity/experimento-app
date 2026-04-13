@@ -20,7 +20,7 @@ public:
     void execute() const;
     void update(float dt) const;
 
-    World() = default;
+    World();
     ~World() = default;
 };
 

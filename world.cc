@@ -1,9 +1,17 @@
 #include "world.h"
 
+#include "base-system.h"
+
 constexpr std::string WINDOW_TITLE = "Happiness";
+
+World::World()
+{
+    systems.push_back(std::make_unique<BaseSystem>());
+}
 
 void World::execute() const
 {
+
     const sf::VideoMode mode(screenVector);
     sf::RenderWindow window(mode, WINDOW_TITLE);
 
