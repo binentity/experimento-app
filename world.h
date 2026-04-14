@@ -1,27 +1,38 @@
 #ifndef EXPERIMENTO_APP_WORLD_H
 #define EXPERIMENTO_APP_WORLD_H
 
-#include "system.h"
-
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
 #include <memory>
 #include <vector>
 
-constexpr unsigned int WIDTH = 2550;
-constexpr unsigned int HEIGHT = 1440;
-constexpr sf::Vector2u screenVector(WIDTH, HEIGHT);
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+
+#include "system.h"
 
 class World
 {
+    const unsigned int screen_width;
+    const unsigned int screen_height;
+
+    const sf::Vector2u screen_vector;
+    const std::string windowTitle;
+    const sf::VideoMode screenMode;
+
+    sf::Clock timer;
+
+    sf::RenderWindow window;
+    float difference;
+
     std::vector<std::unique_ptr<System>> systems;
+    std::vector<std::unique_ptr<sf::CircleShape>> shapes;
+
+    void tick();
+    void update() const;
+    void display();
 
 public:
-    void execute() const;
-    void update(float dt) const;
-
+    void execute();
     World();
-    ~World() = default;
+    virtual ~World() = default;
 };
-
 #endif //EXPERIMENTO_APP_WORLD_H
