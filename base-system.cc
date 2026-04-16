@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void BaseSystem::apply(float dt)
+void BaseSystem::apply(const float dt)
 {
-    std::cout << "base system has been applied..." << dt << std::endl;
+    std::cout << "Delta time: " << dt << std::endl;
 }

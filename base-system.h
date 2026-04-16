@@ -5,6 +5,7 @@
 
 class BaseSystem : public System
 {
+public:
     void apply(float dt) override;
 };
 

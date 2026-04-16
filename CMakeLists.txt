@@ -39,6 +39,9 @@ add_executable(
         system.h
         base-system.cc
         base-system.h
+        system.cc
+        renderer.cc
+        renderer.h
 )
 
 target_link_libraries(

@@ -14,21 +14,21 @@ class World
     const unsigned int screen_width;
     const unsigned int screen_height;
 
-    const sf::Vector2u screen_vector;
+    const sf::Vector2u screenVector;
     const std::string windowTitle;
     const sf::VideoMode screenMode;
 
     sf::Clock timer;
 
-    sf::RenderWindow window;
+    std::unique_ptr<sf::RenderWindow> window;
     float difference;
 
     std::vector<std::unique_ptr<System>> systems;
-    std::vector<std::unique_ptr<sf::CircleShape>> shapes;
+    std::vector<std::shared_ptr<sf::CircleShape>> shapes;
 
     void tick();
     void update() const;
-    void display();
+    void eventExecute() const;
 
 public:
     void execute();
