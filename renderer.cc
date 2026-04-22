@@ -1,6 +1,6 @@
 #include "renderer.h"
 
-void Renderer::render(const std::unique_ptr<sf::RenderWindow> &device) const
+void Renderer::render(const std::shared_ptr<sf::RenderWindow> &device) const
 {
     device->clear(sf::Color(80, 80, 80, 0));
     for (const auto &shape : shapes) {

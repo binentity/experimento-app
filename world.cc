@@ -3,19 +3,21 @@
 #include "renderer.h"
 
 World::World()
-    : screen_width(2550)
-    , screen_height(1440)
-    , screenVector(screen_width, screen_height)
+    : screenWidth(2550)
+    , screenHeight(1440)
+    , screenVector(screenWidth, screenHeight)
     , windowTitle("Happiness")
-    , screenMode(screenVector)
-    , window(std::make_unique<sf::RenderWindow>(sf::RenderWindow(screenMode, windowTitle)))
+    , window(nullptr)
     , difference(0)
 {
-    sf::CircleShape originShape(5.f);
-    originShape.setPosition(sf::Vector2f(10.f, 10.f));
+    sf::ContextSettings settings;
+    settings.antiAliasingLevel = 8;
 
-    shapes.push_back(std::make_shared<sf::CircleShape>(originShape));
-    systems.push_back(std::make_unique<BaseSystem>());
+    const sf::VideoMode mode(screenVector);
+    window = std::make_shared<sf::RenderWindow>(
+        sf::RenderWindow(mode, windowTitle, sf::State::Windowed, settings));
+
+    events = {};
 }
 
 void World::tick()
@@ -25,6 +27,12 @@ void World::tick()
 
 void World::execute()
 {
+    sf::CircleShape originShape(5.f);
+    originShape.setPosition(sf::Vector2f(10.f, 10.f));
+
+    shapes.push_back(std::make_shared<sf::CircleShape>(originShape));
+    systems.push_back(std::make_unique<BaseSystem>());
+
     const Renderer renderer(shapes);
     while (window->isOpen()) {
         tick();
@@ -36,7 +44,6 @@ void World::execute()
 void World::update() const
 {
     eventExecute();
-
     for (const auto &system : systems) {
         system->apply(difference);
     }
@@ -45,14 +52,9 @@ void World::update() const
 void World::eventExecute() const
 {
     while (const std::optional<sf::Event> event = window->pollEvent()) {
-        if (event->is<sf::Event::Closed>()) {
-            window->close();
-        }
-
-        if (const auto *keyPressed = event->getIf<sf::Event::KeyPressed>()) {
-            if (keyPressed->scancode == sf::Keyboard::Scan::NumpadDecimal) {
-                window->close();
-            }
+        //events.push_back(std::make_shared<std::optional<sf::Event>>(event));
+        for (const auto &system : systems) {
+            system->update(event, window);
         }
     }
 }

@@ -42,6 +42,8 @@ add_executable(
         system.cc
         renderer.cc
         renderer.h
+        gui/message-box.cc
+        gui/message-box.h
 )
 
 target_link_libraries(

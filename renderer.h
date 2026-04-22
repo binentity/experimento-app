@@ -9,7 +9,7 @@ class Renderer
     std::vector<std::shared_ptr<sf::CircleShape>> shapes;
 
 public:
-    void render(const std::unique_ptr<sf::RenderWindow> &device) const;
+    void render(const std::shared_ptr<sf::RenderWindow> &device) const;
     explicit Renderer(const std::vector<std::shared_ptr<sf::CircleShape>> &shapes);
 };
 
