@@ -39,6 +39,11 @@ add_executable(
         system.h
         base-system.cc
         base-system.h
+        system.cc
+        renderer.cc
+        renderer.h
+        gui/message-box.cc
+        gui/message-box.h
 )
 
 target_link_libraries(

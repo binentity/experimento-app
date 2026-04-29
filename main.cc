@@ -2,6 +2,7 @@
 
 int main()
 {
-    World().execute();
+    World me;
+    me.execute();
     return 0;
 }

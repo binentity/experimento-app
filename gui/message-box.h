@@ -1,0 +1,8 @@
+#ifndef EXPERIMENTO_APP_MESSAGE_BOX_H
+#define EXPERIMENTO_APP_MESSAGE_BOX_H
+
+class MessageBox {
+
+};
+
+#endif //EXPERIMENTO_APP_MESSAGE_BOX_H
