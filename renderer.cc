@@ -9,6 +9,7 @@ void Renderer::render(const std::shared_ptr<sf::RenderWindow> &device) const
     device->display();
 }
 
-Renderer::Renderer(const std::vector<std::shared_ptr<sf::CircleShape>> &shapes)
+Renderer::Renderer(const std::vector<std::shared_ptr<MessageBox>> &shapes)
     : shapes(shapes)
-{}
+{
+}

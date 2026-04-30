@@ -7,29 +7,25 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
+#include "gui/message-box.h"
 #include "system.h"
-#include <deque>
 
 class World
 {
-    const unsigned int screenWidth;
-    const unsigned int screenHeight;
-
-    const sf::Vector2u screenVector;
+    const sf::Vector2u screenSize;
     const std::string windowTitle;
 
     sf::Clock timer;
 
     std::shared_ptr<sf::RenderWindow> window;
-    float difference;
+    float dt;
 
     std::vector<std::unique_ptr<System>> systems;
-    std::vector<std::shared_ptr<sf::CircleShape>> shapes;
-    std::vector<std::shared_ptr<std::optional<sf::Event>>> events;
+    std::vector<std::shared_ptr<MessageBox>> shapes;
 
     void tick();
-    void update() const;
-    void eventExecute() const;
+    void processSystems() const;
+    void processMainEvents() const;
 
 public:
     void execute();

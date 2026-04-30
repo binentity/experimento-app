@@ -2,21 +2,17 @@
 
 #include <iostream>
 
-void BaseSystem::apply(const float dt)
+BaseSystem::BaseSystem()
+= default;
+
+void BaseSystem::apply(const std::vector<std::shared_ptr<MessageBox>>& shapes, const float dt)
 {
-    std::cout << "Delta time: " << dt << std::endl;
+    for (const auto &box : shapes) {
+        box->setText(std::to_string(dt));
+    }
 }
 
 void BaseSystem::update(
-    const std::optional<sf::Event> &event, const std::shared_ptr<sf::RenderWindow>& window)
+    const std::optional<sf::Event> &event)
 {
-    if (event->is<sf::Event::Closed>()) {
-        window->close();
-    }
-
-    if (const auto *keyPressed = event->getIf<sf::Event::KeyPressed>()) {
-        if (keyPressed->scancode == sf::Keyboard::Scan::NumpadDecimal) {
-            window->close();
-        }
-    }
 }
